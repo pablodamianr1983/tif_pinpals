@@ -36,3 +36,4 @@ CREATE TABLE Messages (
     FOREIGN KEY (UserID) REFERENCES Users(ID),
     FOREIGN KEY (ChannelID) REFERENCES Channels(ID)
 );
+//base
