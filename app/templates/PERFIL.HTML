@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <style>
+        /* ... same CSS as in the login page ... */
+    </style>
+</head>
+
+<body>
+    <div id="profileData">
+        <h2>Welcome, <span id="usernameSpan"></span></h2>
+        <div class="data-label">Username:</div>
+        <div class="data-value" id="usernameData"></div>
+        <!-- Add more fields as needed to display user data -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = JSON.parse(sessionStorage.getItem('user'));
+            if (userData) {
+                document.getElementById('usernameSpan').innerText = userData.Username;
+                document.getElementById('usernameData').innerText = userData.Username;
+            } else {
+                window.location.href = "ERROR.html";
+            }
+        });
+    </script>
+</body>
+
+</html>

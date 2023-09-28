@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html, body {
+  height: 100%;
+}
+body {
+  background-color: black;
+  color: white;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  border: 10px solid darkviolet;
+  border-radius: 10px;
+  padding: 20px;
+}
+p {
+  font-size: xx-large;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <p>Bienvenido a Pin Pals, si eres aficionado al bowling, este no es tu lugar, pero igual eres bienvenido amigo!</p>
+
+<style>
+    img.mrchispa {
+        width: 150px;
+        height: 150px;
+    }
+</style>
+
+  <img src="{{ url_for('static', filename='mrchispa.png') }}" alt="Mr. Chispa">
+
+</div>
+
+</body>
+</html>

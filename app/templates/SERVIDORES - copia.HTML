@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Consultar Servidor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        h1, h2 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        form {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #serverDetails, #channelsList {
+            margin-top: 20px;
+            border: solid 1px #333;
+            padding: 10px;
+            width: 80%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Consultar Servidor</h1>
+
+    <form id="searchForm">
+        <h2>Buscar Servidor</h2>
+        <label for="search">Buscar Servidor:</label>
+        <input type="text" id="search" placeholder="Nombre o ID del servidor">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Detalles del Servidor:</h2>
+    <div id="serverDetails"></div>
+
+    <h2>Canales asociados:</h2>
+    <ul id="channelsList"></ul>
+
+    <script>
+    document.getElementById('searchForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const searchTerm = document.getElementById('search').value;
+
+        // Llamamos a la API para buscar el servidor usando la dirección completa
+        let response = await fetch(`http://127.0.0.1:5000/servers/search?term=${searchTerm}`);
+        let data = await response.json();
+
+        if (data && data.length > 0) {
+            const server = data[0];
+            
+            // Cambiado para mostrar el username del propietario en lugar del ID
+            document.getElementById('serverDetails').innerText = `Nombre: ${server.Name}, Propietario: ${server.OwnerUsername}`;  // Modificado aquí
+
+            // Llamamos a la API para obtener los canales de ese servidor usando la dirección completa
+            response = await fetch(`http://127.0.0.1:5000/channels/by_server/${server.ID}`);
+            data = await response.json();
+
+            const channelsList = document.getElementById('channelsList');
+            channelsList.innerHTML = ''; // Limpiar la lista actual
+            for (const channel of data) {
+                const li = document.createElement('li');
+                li.innerText = channel.Name;
+                channelsList.appendChild(li);
+            }
+        } else {
+            document.getElementById('serverDetails').innerText = 'No se encontró el servidor.';
+            document.getElementById('channelsList').innerHTML = '';
+        }
+    });
+</script>
+
+</body>
+
+</html>
