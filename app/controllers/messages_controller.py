@@ -25,7 +25,9 @@ class MessagesController:
 
     @classmethod
     def create(cls):
+        print("Create method called")  # Para verificar que el método se está llamando
         data = request.json
+        print("Data received:", data)  # Para imprimir los datos recibidos
         message = Messages(**data)
         Messages.create(message)
         return {'message': 'Message created successfully'}, 201
