@@ -1,6 +1,5 @@
 # users
 from flask import current_app, jsonify, session, redirect
-from sqlalchemy.testing.suite.test_reflection import users
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
@@ -102,18 +101,6 @@ class Users:
         return None
 
 
-def login(username, password):
-    user = users.get(username)
 
-    if user is None:
-        return jsonify({'success': False, 'error': 'El usuario no existe'})
-
-    if not user.check_password(password):
-        return jsonify({'success': False, 'error': 'La contraseña es incorrecta'})
-
-    session['username'] = user.username
-    session['id'] = user.id
-
-    return redirect('/profile')
 
 
