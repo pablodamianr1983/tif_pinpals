@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Estilos-->
+    <link rel="stylesheet" type="text/css" href="../static/css/profile.css">
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
+    <title>Perfil de usuario</title>
+</head>
+<body>
+</div>
+
+<script src="../static/js/loading.js"></script>
+
+    <div class="container">
+        <h2>Perfil de usario</h2>
+
+        <div class="search-box">
+            <input type="text" id="userId" placeholder="INGRESE ID DE USUARIO">
+            <button onclick="fetchUserProfile()">Buscar</button>
+        </div>
+
+        <div id="user-profile" class="user-profile-hidden">
+            <div class="profile-field">
+                <label>Username: </label>
+                <span id="username"></span>
+                <button onclick="editField('Username')">Edit</button>
+            </div>
+            <div class="profile-field">
+                <label>Email: </label>
+                <span id="email"></span>
+                <button onclick="editField('Email')">Edit</button>
+            </div>
+            <div class="profile-field">
+                <label>Password: </label>
+                <button onclick="editField('Password')">Change Password</button>
+            </div>
+            <div class="profile-field">
+                <label>Profile Picture: </label>
+                <img id="profilePicture" src="" alt="Profile Picture">
+                <button onclick="editField('ProfilePicture')">Change Picture</button>
+            </div>
+        </div>
+        <a href="../templates/servidores del usuario.html">Ir a mis servidores</a>
+
+        <div class="footer">
+            
+        </div>
+
+    </div>
+
+    <script src="../static/js/profile.js"></script>
+</body>
+
+</html>
